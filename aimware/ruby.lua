@@ -1,9 +1,6 @@
 ---@diagnostic disable: undefined-global, deprecated, lowercase-global
 
-
--- @soiderino: fuck ffi.
 ffi.cdef([[
-
     typedef void* (__cdecl* tCreateInterface)(const char* name, int* returnCode);
 
     void* GetProcAddress(void* hModule, const char* lpProcName);
@@ -40,9 +37,6 @@ function filesystem.readFile(path)
 
     return ffi.string(buffer, filesize)
 end
-
-
-
 
 
 
@@ -149,7 +143,7 @@ RUBY.INVERTER = function ()
     end
 end
 
-RUBY.VIEWMODEL = function () -- @soiderino: gucci optimization 🤣
+RUBY.VIEWMODEL = function ()
     local viewmodelX = RUBY_VIEWMODEL_X:GetValue()
     local viewmodelY = RUBY_VIEWMODEL_Y:GetValue()
     local viewmodelZ = RUBY_VIEWMODEL_Z:GetValue()
@@ -166,7 +160,7 @@ end
 
 RUBY.ROLL = function (cmd)
 
-    gui.SetValue("rbot.antiaim.advanced.roll", "Off") -- @soiderino: disables aimware roll, it's shit
+    gui.SetValue("rbot.antiaim.advanced.roll", "Off")
 
     if RUBY_ROLL_BOX:GetValue() == true then
         RUBY_ROLL_GROUP:SetInvisible(false)
@@ -242,7 +236,6 @@ RUBY.AUTODISCONNECT = function (event)
     if not RUBY_AUTODISCONNECT:GetValue() then return end
 
 	if event:GetName() == "cs_win_panel_match" then
-        -- @soiderino: added movement fix 🔮
 		client.Command("disconnect;-forward;-back;-duck;-moveleft;-moveright;-speed;-jump", true)
 	end
 end
